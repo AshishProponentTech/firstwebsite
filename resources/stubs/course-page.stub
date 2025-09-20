@@ -1,0 +1,12 @@
+@extends('layouts.master')
+
+@section('title', '{{ title }}')
+
+@section('content')
+<section class="spacing">
+    <div class="container">
+        <h1>{{ heading }}</h1>
+        <p>Welcome to the {{ heading }} course page!</p>
+    </div>
+</section>
+@endsection
