@@ -4,6 +4,18 @@
         <li><a href="#">Manage Header</a></li>
         <li><a href="#">Manage Footer</a></li>
         <li><a href="#">Contact Details</a></li>
+         <li class="has-dropdown">
+            <span>All Courses Details</span>
+            <ul class="dropdown">
+                <li><a href="{{ route('admin.course-about.index') }}">About</a></li>
+                <li><a href="">Syllabus</a></li>
+                <li><a href="">Fee/Price</a></li>
+                <li><a href="">Gallery</a></li>
+                <li><a href="">Accommodation</a></li>
+                <li><a href="">Testimonials</a></li>
+                <li><a href="">Faq</a></li>
+            </ul>
+        </li>
         <li class="has-dropdown">
             <span>Courses Page</span>
             <ul class="dropdown">

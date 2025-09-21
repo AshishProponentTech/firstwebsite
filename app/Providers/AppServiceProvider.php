@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
     // Share all courses with all views
-    $courses = CoursePage::select('name', 'slug')->get();
+    $courses = CoursePage::select('name', 'slug', 'category')->get();
     View::share('courses', $courses);
     }
 }

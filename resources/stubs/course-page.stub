@@ -3,6 +3,10 @@
 @section('title', '{{ title }}')
 
 @section('content')
+ {{-- Includes Breadcrumb --}}
+    @include('includes.breadcrumb', ['page' => $page])
+    {{--Includes About Course --}}
+    @include('includes.coursedetails.about', ['page' => $page])
 <section class="spacing">
     <div class="container">
         <h1>{{ heading }}</h1>

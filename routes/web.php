@@ -5,8 +5,9 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PasswordResetController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\HomeController;
 use App\Models\CoursePage;
-
+require base_path('routes/course_details.php');
 Route::get('/', function () {
     return view('home');
 })->name('homepage');
@@ -47,13 +48,6 @@ Route::prefix('admin')->group(function () {
 });
 
 // to view the dynamically created view page
+Route::get('/{slug}', [HomeController::class, 'coursedetail'])->name('course.page');
 
-Route::get('/{slug}', function ($slug) {
-    $page = CoursePage::where('slug', $slug)->firstOrFail();
-    $viewPath = "courses.{$page->slug}";
-    if (!view()->exists($viewPath)) {
-        abort(404, 'Course page not found.');
-    }
-    return view($viewPath, ['page' => $page]);
-})->name('course.page');
 

@@ -5,3 +5,13 @@ document.querySelectorAll('.sidebar .has-dropdown > span').forEach(span => {
     parentLi.classList.toggle('open');
   });
 });
+window.addEventListener("scroll", function () {
+  const header = document.querySelector("header");
+  const scroll = window.scrollY;
+
+  if (scroll >= 10) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+});

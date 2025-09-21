@@ -50,14 +50,19 @@
                                 class="drop-link {{ request()->is('gallery') ? 'active' : '' }}">Our Gallery</a></li>
                     </ul>
                 </li>
+                @php
+                $groupedCourses = $courses->groupBy('category');
+                @endphp
+
+                @foreach ($groupedCourses as $category => $categoryCourses)
                 <li class="has-dropdown">
                     <span
                         class="nav-link 
-        {{ collect($courses)->pluck('slug')->map(fn($slug) => request()->is($slug.'*'))->contains(true) ? 'active' : '' }}">
-                        Yoga Course
+            {{ $categoryCourses->pluck('slug')->map(fn($slug) => request()->is($slug.'*'))->contains(true) ? 'active' : '' }}">
+                        {{ $category }}
                     </span>
                     <ul class="dropdown">
-                        @foreach ($courses as $course)
+                        @foreach ($categoryCourses as $course)
                         <li>
                             <a href="{{ url($course->slug) }}"
                                 class="drop-link {{ request()->is($course->slug.'*') ? 'active' : '' }}">
@@ -67,23 +72,10 @@
                         @endforeach
                     </ul>
                 </li>
-                <li class="has-dropdown">
-                    <span
-                        class="nav-link {{ request()->is('yoga-retreat*') || request()->is('ayurveda-retreat*') ? 'active' : '' }}">Retreat</span>
-                    <ul class="dropdown">
-                        <li><a href="{{ url('yoga-retreat-in-bali') }}"
-                                class="drop-link {{ request()->is('yoga-retreat*') ? 'active' : '' }}">Yoga Retreat</a>
-                        </li>
-                        <li><a href="{{ url('ayurveda-retreat-in-bali') }}"
-                                class="drop-link {{ request()->is('ayurveda-retreat*') ? 'active' : '' }}">Ayurveda
-                                Retreat</a></li>
-                    </ul>
-                </li>
+                @endforeach
 
                 <li><a href="{{ url('blog') }}" class="nav-link {{ request()->is('blog') ? 'active' : '' }}">Blog</a>
                 </li>
-                <li><a href="{{ url('contact') }}"
-                        class="nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact</a></li>
                 <li><a href="{{ url('payment') }}" class="nav-link {{ request()->is('payment') ? 'active' : '' }}">Pay
                         Online</a></li>
             </ul>
