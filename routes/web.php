@@ -12,6 +12,9 @@ Route::get('/', function () {
     return view('home');
 })->name('homepage');
 
+Route::get('/login', function () {
+    return redirect()->route('admin.login');
+})->name('login');
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return auth()->check()
